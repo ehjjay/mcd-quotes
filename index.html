@@ -26,6 +26,16 @@
         h1 {
             color: #DA291C;
         }
+        .intro-text {
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #333;
+            padding: 1rem;
+            background-color: rgba(255, 199, 44, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid #FFC72C;
+        }
         .fact-box {
             margin: 2rem 0;
             padding: 1.5rem;
@@ -63,7 +73,6 @@
             color: #b71c1c;
             text-decoration: underline;
         }
-        /* Cursor effect for typewriter */
         .typing::after {
             content: '|';
             animation: blink 1s infinite;
@@ -77,6 +86,8 @@
 <body>
     <div class="container">
         <h1>🍔 McDonald's Fun Facts 🍟</h1>
+        <div class="intro-text">
+            Discover the world of McDonald's with our Fun Facts Generator! Whether you're a fan of the iconic Big Mac or the crispy French Fries, this tool will delight you with surprising trivia about the globally renowned fast-food giant. 
         <div class="fact-box" id="factDisplay">
             Click the button to generate a random McDonald's fact!
         </div>
@@ -115,7 +126,7 @@
             for (let i = 0; i < text.length; i++) {
                 displayText += text.charAt(i);
                 element.textContent = displayText;
-                await sleep(30); // Adjust typing speed here (milliseconds)
+                await sleep(30);
             }
             element.classList.remove('typing');
         }
@@ -125,16 +136,9 @@
             const button = document.getElementById('generateBtn');
             const randomIndex = Math.floor(Math.random() * facts.length);
             
-            // Disable button during animation
             button.disabled = true;
-            
-            // Clear previous fact
             factDisplay.textContent = '';
-            
-            // Type new fact
             await typeWriter(facts[randomIndex], factDisplay);
-            
-            // Re-enable button
             button.disabled = false;
         }
     </script>
