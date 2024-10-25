@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Sitemap: https://ehjjay.github.io/mcd-quotes/sitemap.xml
+
+# Allow all search engines to crawl
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Prevent crawling of specific file types
+Disallow: *.js$
+Disallow: *.css$
+
+# Crawl-delay for rate limiting (in seconds)
+Crawl-delay: 10
