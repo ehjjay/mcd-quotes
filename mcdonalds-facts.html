@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McDonald's Random Facts Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            text-align: center;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        h1 {
+            color: #DA291C;
+        }
+        .fact-box {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 2px solid #FFC72C;
+            border-radius: 8px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+            background-color: #DA291C;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #b71c1c;
+        }
+        footer {
+            padding: 1rem;
+            margin-top: 2rem;
+            color: #666;
+        }
+        footer a {
+            color: #DA291C;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: #b71c1c;
+            text-decoration: underline;
+        }
+        /* Cursor effect for typewriter */
+        .typing::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍔 McDonald's Fun Facts 🍟</h1>
+        <div class="fact-box" id="factDisplay">
+            Click the button to generate a random McDonald's fact!
+        </div>
+        <button onclick="generateFact()" id="generateBtn">Generate Fact</button>
+    </div>
+    <footer>
+        Powered by <a href="https://mcdomenu.com.ph" target="_blank" rel="dofollow">McDo Menu Philippines</a>
+    </footer>
+
+    <script>
+        const facts = [
+            "McDonald's serves around 69 million customers daily in over 100 countries.",
+            "The first McDonald's restaurant was opened by brothers Dick and Mac McDonald in San Bernardino, California in 1940.",
+            "The Big Mac was first introduced in 1967 and was created by Jim Delligatti, a McDonald's franchise owner.",
+            "McDonald's is the world's largest toy distributor through their Happy Meals.",
+            "The Golden Arches logo was introduced in 1962.",
+            "Ray Kroc joined McDonald's in 1954 and helped transform it into a global franchise.",
+            "The first drive-thru McDonald's opened in 1975 in Sierra Vista, Arizona.",
+            "McDonald's purchases over 3.4 billion pounds of potatoes annually.",
+            "The Chicken McNugget was introduced in 1983.",
+            "McDonald's sells more than 2.5 billion hamburgers every year.",
+            "The first McDonald's outside the United States opened in Canada in 1967.",
+            "Ronald McDonald was first introduced as a mascot in 1963.",
+            "The Quarter Pounder was introduced in 1971.",
+            "McDonald's French fries were originally made with fresh potatoes until 1967.",
+            "The McMuffin was created in 1972 by franchise owner Herb Peterson."
+        ];
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function typeWriter(text, element) {
+            element.classList.add('typing');
+            let displayText = '';
+            for (let i = 0; i < text.length; i++) {
+                displayText += text.charAt(i);
+                element.textContent = displayText;
+                await sleep(30); // Adjust typing speed here (milliseconds)
+            }
+            element.classList.remove('typing');
+        }
+
+        async function generateFact() {
+            const factDisplay = document.getElementById('factDisplay');
+            const button = document.getElementById('generateBtn');
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            
+            // Disable button during animation
+            button.disabled = true;
+            
+            // Clear previous fact
+            factDisplay.textContent = '';
+            
+            // Type new fact
+            await typeWriter(facts[randomIndex], factDisplay);
+            
+            // Re-enable button
+            button.disabled = false;
+        }
+    </script>
+</body>
+</html>
